@@ -159,7 +159,7 @@ keybinds {
 
 ui {
     pane_frames {
-        rounded_corners true
+        rounded_corners false
     }
 }
 
@@ -197,7 +197,7 @@ plugins {
 //   - true (default)
 //   - false
 //
-pane_frames true
+pane_frames false
 
 // Toggle between having Zellij lay out panes according to a predefined set of layouts whenever possible
 // Options:
@@ -211,33 +211,18 @@ auto_layout true
 // Once these themes are defined, one of them should to be selected in the "theme" section of this file
 //
 themes {
-    dracula {
-        fg 248 248 242
-        bg 40 42 54
-        red 255 85 85
-        green 80 250 123
-        yellow 241 250 140
-        blue 98 114 164
-        magenta 255 121 198
-        orange 255 184 108
-        cyan 139 233 253
-        black 0 0 0
-        white 255 255 255
-    }
-}
-themes {
-    one-half-dark {
-        fg 220 223 228
-        bg 40 44 52
-        black 27 29 35
-        red 227 63 76
-        green 152 195 121
-        yellow 229 192 123
-        blue 97 175 239
-        magenta 198 120 221
-        cyan 86 182 194
-        white 233 225 254
-        orange 216 133 76
+    nord {
+        fg 216 222 233 // #D8DEE9
+        bg 46 52 64 // #2E3440
+        black 59 66 82 // #3B4252
+        red 191 97 106 // #BF616A
+        green 163 190 140 // #A3BE8C
+        yellow 235 203 139 // #EBCB8B
+        blue 129 161 193 // #81A1C1
+        magenta 180 142 173 // #B48EAD
+        cyan 136 192 208 // #88C0D0
+        white 229 233 240 // #E5E9F0
+        orange 208 135 112 // #D08770
     }
 }
 
@@ -245,7 +230,7 @@ themes {
 // Default: default
 //
 /* theme "one-half-dark" */
-theme "dracula"
+theme "nord"
 
 // The name of the default layout to load on startup
 // Default: "default"
@@ -280,7 +265,7 @@ default_layout "disable-status-bar"
 // that will be used by default if this option is not set.
 // Examples:
 //
-//copy_command "xclip -selection clipboard" // x11
+copy_command "xclip -selection clipboard" // x11
 // copy_command "wl-copy"                    // wayland
 // copy_command "pbcopy"                     // osx
 
@@ -291,12 +276,12 @@ default_layout "disable-status-bar"
 //   - system (default)
 //   - primary
 //
-copy_clipboard "primary"
+// copy_clipboard "primary"
 
 // Enable or disable automatic copy (and clear) of selection when releasing mouse
 // Default: true
 //
-copy_on_select true
+// copy_on_select false
 
 // Path to the default editor to use to edit pane scrollbuffer
 // Default: $EDITOR or $VISUAL

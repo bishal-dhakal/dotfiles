@@ -1,0 +1,93 @@
+#!/bin/sh
+
+# -------------------------------------------
+# Improved BSPWM Startup Script
+# -------------------------------------------
+
+# Kill any existing processes that we'll be starting
+killall -q polybar sxhkd compton picom
+
+# Wait for processes to be shut down
+while pgrep -u $UID -x polybar >/dev/null; do sleep 0.1; done
+
+# Define monitors
+INTERNAL_MONITOR="eDP-1"
+# Auto-detect external monitor
+EXTERNAL_MONITOR=$(xrandr --query | grep -w "connected" | grep -v "$INTERNAL_MONITOR" | cut -d " " -f1)
+
+# Set up multi-monitor workspaces
+if [ -n "$EXTERNAL_MONITOR" ]; then
+    echo "External monitor detected: $EXTERNAL_MONITOR"
+    xrandr --output "$EXTERNAL_MONITOR" --auto --primary --right-of "$INTERNAL_MONITOR"
+    bspc monitor "$EXTERNAL_MONITOR" -d VI VII VIII IX X
+    bspc monitor "$INTERNAL_MONITOR" -d I II III IV V
+    # Launch polybar on both monitors
+    MONITOR=$INTERNAL_MONITOR polybar --reload main &
+    MONITOR=$EXTERNAL_MONITOR polybar --reload main &
+else
+    echo "No external monitor detected. Using internal monitor only."
+    xrandr --output "$INTERNAL_MONITOR" --auto --primary
+    bspc monitor "$INTERNAL_MONITOR" -d I II III IV V VI VII VIII IX X
+    # Launch polybar on internal monitor only
+    MONITOR=$INTERNAL_MONITOR polybar --reload main &
+fi
+
+# Start essential services
+sxhkd &
+
+# Use picom if available, fall back to compton
+if command -v picom >/dev/null; then
+    picom --experimental-backends --backend glx --vsync &
+elif command -v compton >/dev/null; then
+    compton --backend glx --vsync opengl-swc &
+fi
+
+# Power management and system utilities
+xfce4-power-manager &
+
+# Start polkit agent - corrected path
+if [ -f /usr/lib/xfce-polkit/xfce-polkit ]; then
+    /usr/lib/xfce-polkit/xfce-polkit &
+elif [ -f /usr/lib/xfce4/xfce-polkit ]; then
+    /usr/lib/xfce4/xfce-polkit &
+elif [ -f /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 ]; then
+    /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
+fi
+
+# Set random wallpaper
+if [ -d "$HOME/dotfiles/wallpaper" ] && command -v feh >/dev/null; then
+    feh --randomize --bg-fill ~/dotfiles/wallpaper/* &
+fi
+
+# BSPWM configuration
+bspc config border_width 2
+bspc config window_gap 5
+bspc config split_ratio 0.5
+bspc config borderless_monocle true
+bspc config gapless_monocle true
+bspc config focus_follows_pointer true
+bspc config pointer_follows_monitor true
+
+# Window rules
+bspc rule -a Gimp desktop='^8' state=floating follow=on
+bspc rule -a Firefox desktop='^2'
+bspc rule -a Chromium desktop='^2'
+bspc rule -a discord desktop='^5'
+bspc rule -a Thunar state=floating
+bspc rule -a Pavucontrol state=floating
+bspc rule -a Lxappearance state=floating center=true
+bspc rule -a Nitrogen state=floating
+bspc rule -a feh state=floating
+
+# Set proper cursor
+xsetroot -cursor_name left_ptr &
+
+# Start notification daemon if available
+if command -v dunst >/dev/null; then
+    dunst &
+fi
+
+# Fix Java applications
+export _JAVA_AWT_WM_NONREPARENTING=1
+
+echo "BSPWM startup completed successfully!"

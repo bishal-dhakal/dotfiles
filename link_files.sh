@@ -1,4 +1,10 @@
 #!/bin/sh
 
-ln -s $HOME/dotfiles/zellij $HOME/.config
-ln -s $HOME/dotfiles/nvim   $HOME/.config
+config_dir="$HOME/.config"
+dotfiles_dir="$HOME/dotfiles"
+
+dirs="zellij nvim bspwm sxhkd polybar alacritty rofi gtk-3.0"
+
+for dir in $dirs; do
+    ln -s "$dotfiles_dir/$dir" "$config_dir"
+done
