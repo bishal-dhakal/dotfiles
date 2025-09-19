@@ -1,3 +1,6 @@
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
+export PATH="/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/bin"
 
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -5,7 +8,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="agnoster"
+ZSH_THEME=""
 
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
@@ -98,6 +101,7 @@ alias cat=bat
 
 # ---- Eza (better ls) -----
 alias ls="eza --color=always --long --git --icons=always --no-time --no-user --no-permissions"
+
 
 # ---- Zoxide (better cd) ----
 eval "$(zoxide init zsh)"
