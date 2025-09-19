@@ -1,0 +1,48 @@
+# Import theme from themes directory
+general.import = ["themes/tokyo-night.toml"]
+
+[cursor.style]
+blinking = "Always"
+shape = "Beam"
+
+[font]
+size = 12.0
+
+[font.glyph_offset]
+x = 0
+y = 0
+
+[font.normal]
+family = "JetBrainsMono Nerd Font"
+style = "Regular"
+
+[scrolling]
+history = 15000
+
+[window]
+opacity = 0.85
+startup_mode = "Windowed"
+
+# Window decorations
+decorations = "full"
+
+# Disable native fullscreen to maintain transparency
+option_as_alt = "OnlyLeft"
+
+# Window dimensions (optional - remove if you don't want specific size)
+dimensions = { columns = 120, lines = 40 }
+
+# Window position (centered)
+position = "None"
+
+# Padding
+padding = { x = 10, y = 8 }
+
+# Colors imported from theme file above
+
+[keyboard]
+bindings = [
+    { key = "F11", mods = "None", action = "ToggleSimpleFullscreen" },
+    { key = "Return", mods = "Command", action = "ToggleSimpleFullscreen" },
+]
+
