@@ -1,0 +1,167 @@
+configuration {
+    modi: "drun,run,window,ssh";
+    font: "JetBrainsMono Nerd Font 12";
+    display-drun: "󰀻 ";
+    display-run: "󰆍 ";
+    display-window: "󰖲 ";
+    display-ssh: "󰣀 ";
+    drun-display-format: "{icon} {name}";
+    show-icons: true;
+    icon-theme: "Papirus";
+    terminal: "alacritty";
+    kb-row-up: "Up,Control+k";
+    kb-row-down: "Down,Control+j";
+    kb-accept-entry: "Return,KP_Enter";
+    kb-remove-to-eol: "Control+Shift+e";
+    kb-mode-next: "Shift+Right,Control+Tab";
+    kb-mode-previous: "Shift+Left,Control+Shift+Tab";
+    kb-remove-char-back: "BackSpace";
+}
+
+@theme "/dev/null"
+
+* {
+    bg: #1e1e2e;
+    bg-alt: #313244;
+    bg-selected: #45475a;
+    
+    fg: #cdd6f4;
+    fg-alt: #9399b2;
+    fg-selected: #f5e0dc;
+    
+    border-color: #89b4fa;
+    border-radius: 8px;
+    
+    margin: 0;
+    padding: 0;
+    spacing: 0;
+}
+
+window {
+    width: 45%;
+    background-color: @bg;
+    border: 2px;
+    border-color: @border-color;
+    border-radius: @border-radius;
+    transparency: "real";
+    cursor: "default";
+    location: center;
+    anchor: center;
+    fullscreen: false;
+    enabled: true;
+    animation: true;
+}
+
+mainbox {
+    children: [inputbar, message, listview];
+    background-color: transparent;
+    spacing: 10px;
+    padding: 15px;
+}
+
+inputbar {
+    children: [prompt, entry];
+    background-color: @bg-alt;
+    border-radius: @border-radius;
+    padding: 5px;
+    spacing: 10px;
+}
+
+prompt {
+    enabled: true;
+    padding: 10px 0 10px 10px;
+    background-color: transparent;
+    text-color: @fg;
+    font: "JetBrainsMono Nerd Font 12";
+}
+
+entry {
+    padding: 10px;
+    background-color: transparent;
+    text-color: @fg;
+    cursor: text;
+    placeholder: "Search...";
+    placeholder-color: @fg-alt;
+}
+
+message {
+    background-color: transparent;
+    text-color: @fg;
+    border-radius: @border-radius;
+    padding: 5px;
+}
+
+listview {
+    background-color: transparent;
+    columns: 1;
+    lines: 8;
+    spacing: 5px;
+    cycle: true;
+    dynamic: true;
+    layout: vertical;
+    border-radius: @border-radius;
+    scrollbar: true;
+}
+
+scrollbar {
+    width: 4px;
+    border-radius: 0;
+    background-color: @bg-alt;
+    handle-width: 8px;
+    handle-color: @fg-alt;
+    padding: 0 5px;
+}
+
+element {
+    padding: 10px 15px;
+    background-color: transparent;
+    text-color: @fg-alt;
+    border-radius: @border-radius;
+    spacing: 15px;
+}
+
+element selected {
+    text-color: @fg-selected;
+    background-color: @bg-selected;
+}
+
+element-text {
+    background-color: transparent;
+    text-color: inherit;
+    vertical-align: 0.5;
+    highlight: none;
+}
+
+element-icon {
+    size: 24px;
+    padding: 0 10px 0 0;
+    background-color: transparent;
+}
+
+/* Animations */
+animation {
+    enabled: true;
+    function: "ease-in-out";
+    speed: 0.1;
+}
+
+/* Mode switcher */
+mode-switcher {
+    enabled: true;
+    spacing: 10px;
+    background-color: transparent;
+    border-radius: @border-radius;
+}
+
+button {
+    padding: 8px;
+    background-color: @bg-alt;
+    text-color: @fg-alt;
+    border-radius: @border-radius;
+    cursor: pointer;
+}
+
+button selected {
+    background-color: @bg-selected;
+    text-color: @fg-selected;
+}
