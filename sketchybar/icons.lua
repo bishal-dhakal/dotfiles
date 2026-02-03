@@ -8,6 +8,8 @@ return {
     cpu = "",
     nuke = "",
     clipboard = "􀉄",
+    calendar = "󰃭",
+    clock = "󰥔",
 
     switch = {
         on = "󰔢",

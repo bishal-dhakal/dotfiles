@@ -16,27 +16,21 @@ ZSH_THEME_RANDOM_CANDIDATES=(
   bureau          # Clean, informative
   cloud           # Minimal cloud theme
   crunch          # Compact, informative
-  fino            # Modern, git-aware
-  gallifrey       # Doctor Who inspired, clean
-  gentoo          # Clean, simple
-  jaischeema      # Modern, colorful
-  josh            # Minimal, fast
-  lambda          # Lambda symbol, clean
-  macos           # macOS style
-  miloshadzic     # Clean, informative
-  minimal         # Ultra minimal
-  nanotech        # Tech-inspired, clean
-  pure            # Inspired by Pure prompt
-  refined         # Refined, modern
-  risto           # Clean, git-aware
-  sammy           # Simple, fast
-  steeef          # Clean, informative
-  sunrise         # Colorful, git-aware
-  terminalparty   # Party theme, fun
-  theunraveler    # Clean, modern
-  wezm            # Minimal, fast
-  xiong-chiamiov  # Clean, informative
-  ys              # YS theme, popular
+  # fino            # Modern, git-aware
+  # gallifrey       # Doctor Who inspired, clean
+  # gentoo          # Clean, simple
+  # jaischeema      # Modern, colorful
+  # josh            # Minimal, fast
+  # lambda          # Lambda symbol, clean
+  # miloshadzic     # Clean, informative
+  # minimal         # Ultra minimal
+  # steeef          # Clean, informative
+  # sunrise         # Colorful, git-aware
+  # terminalparty   # Party theme, fun
+  # theunraveler    # Clean, modern
+  # wezm            # Minimal, fast
+  # xiong-chiamiov  # Clean, informative
+  # ys              # YS theme, popular
 )
 ZSH_THEME="random"
 
@@ -125,7 +119,8 @@ command -v terraform >/dev/null && \
 
 alias vim="nvim"
 alias cat="bat"
-alias ls="eza --color=always --long --git --icons=always --no-time --no-user --no-permissions"
+# export EZA_COLORS="di=0:ln=0:ex=0:fi=0"
+# alias ls="eza --color=always --long --git --icons=always --no-time --no-user --no-permissions"
 
 # zoxide (keep cd intact for scripts)
 alias zc="z"
@@ -219,3 +214,6 @@ git config --global credential.helper cache 2>/dev/null || true
 
 # Added by Antigravity
 [ -d "$HOME/.antigravity/antigravity/bin" ] && export PATH="$HOME/.antigravity/antigravity/bin:$PATH"
+
+# opencode
+export PATH=/Users/bishal/.opencode/bin:$PATH

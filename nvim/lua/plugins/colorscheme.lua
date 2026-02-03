@@ -1,36 +1,31 @@
--- Kanagawa: Modern, elegant colorscheme inspired by Japanese art
--- One of the most popular and well-maintained Neovim themes
 return {
-  "rebelot/kanagawa.nvim",
+  "catppuccin/nvim",
+  name = "catppuccin",
   priority = 1000,
-  lazy = false, -- Load immediately
+  lazy = false, -- load immediately
   config = function()
-    require("kanagawa").setup({
-      compile = false, -- Faster startup
-      undercurl = true,
-      commentStyle = { italic = true },
-      functionStyle = {},
-      keywordStyle = { italic = true },
-      statementStyle = { bold = true },
-      typeStyle = {},
-      transparent = true, -- Full transparency
-      dimInactive = false,
-      terminalColors = true,
-      theme = "wave", -- Options: "wave", "dragon", "lotus"
-
-      colors = {
-        theme = {
-          all = {
-            ui = {
-              bg_gutter = "none", -- Remove gutter background
-            },
-          },
-        },
+    require("catppuccin").setup({
+      flavor = "mocha", -- IntelliJ-like dark theme
+      transparent_background = true, -- basic editor transparency
+      styles = {
+        comments = { "italic" },
+        keywords = { "italic" },
+        statements = { "bold" },
+        functions = {},
+        types = {},
       },
-
-      overrides = function(colors)
+      integrations = {
+        nvimtree = true,
+        telescope = true,
+        which_key = true,
+        cmp = true,
+        gitsigns = true,
+        lsp_trouble = true,
+        notify = true,
+      },
+      custom_highlights = function(colors)
         return {
-          -- Transparent backgrounds for all UI elements
+          -- Full transparent backgrounds
           Normal = { bg = "none" },
           NormalFloat = { bg = "none" },
           FloatBorder = { bg = "none" },
@@ -38,10 +33,10 @@ return {
           EndOfBuffer = { bg = "none" },
           LineNr = { bg = "none" },
           CursorLineNr = { bg = "none" },
-          TelescopeNormal = { bg = "none" },
-          TelescopeBorder = { bg = "none" },
           Pmenu = { bg = "none" },
           PmenuSel = { bg = "none" },
+          TelescopeNormal = { bg = "none" },
+          TelescopeBorder = { bg = "none" },
           WhichKeyFloat = { bg = "none" },
           NvimTreeNormal = { bg = "none" },
           NvimTreeNormalNC = { bg = "none" },
@@ -49,6 +44,23 @@ return {
       end,
     })
 
-    vim.cmd("colorscheme kanagawa-wave")
+    -- Activate the colorscheme
+    vim.cmd("colorscheme catppuccin")
+
+    -- Extra: Ensure floating windows from LSP/Telescope/etc. are transparent
+    vim.cmd([[
+      hi Normal guibg=NONE ctermbg=NONE
+      hi NormalFloat guibg=NONE ctermbg=NONE
+      hi FloatBorder guibg=NONE ctermbg=NONE
+      hi SignColumn guibg=NONE ctermbg=NONE
+      hi EndOfBuffer guibg=NONE ctermbg=NONE
+      hi Pmenu guibg=NONE ctermbg=NONE
+      hi PmenuSel guibg=NONE ctermbg=NONE
+      hi TelescopeNormal guibg=NONE ctermbg=NONE
+      hi TelescopeBorder guibg=NONE ctermbg=NONE
+      hi WhichKeyFloat guibg=NONE ctermbg=NONE
+      hi NvimTreeNormal guibg=NONE ctermbg=NONE
+      hi NvimTreeNormalNC guibg=NONE ctermbg=NONE
+    ]])
   end,
 }
