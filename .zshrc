@@ -73,6 +73,13 @@ path=(
 export PATH
 
 # =============================================================================
+# AUTO-LAUNCH TMUX
+# =============================================================================
+if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+  exec tmux attach || exec tmux
+fi
+
+# =============================================================================
 # OH-MY-ZSH PLUGINS (optimized)
 # =============================================================================
 
@@ -217,3 +224,6 @@ git config --global credential.helper cache 2>/dev/null || true
 
 # opencode
 export PATH=/Users/bishal/.opencode/bin:$PATH
+
+# Added by Antigravity
+export PATH="/Users/bishal/.antigravity/antigravity/bin:$PATH"
