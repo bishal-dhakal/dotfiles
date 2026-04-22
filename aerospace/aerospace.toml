@@ -201,9 +201,10 @@ if.app-id = 'com.apple.finder'
 run = ['layout floating']
 
 # force certain workspaces to certain monitors
+# 1 = laptop only; 2–9 = external (eight workspaces on the monitor)
 [workspace-to-monitor-force-assignment]
 1 = 1                       # Built-in Retina Display
-2 = 1                       # Built-in Retina Display
+2 = 2                       # DELL S2721HN
 3 = 2                       # DELL S2721HN
 4 = 2                       # DELL S2721HN
 5 = 2                       # DELL S2721HN

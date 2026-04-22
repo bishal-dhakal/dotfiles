@@ -76,7 +76,7 @@ export PATH
 # AUTO-LAUNCH TMUX
 # =============================================================================
 if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
-  exec tmux attach || exec tmux
+  tmux attach || exec tmux
 fi
 
 # =============================================================================
@@ -227,3 +227,4 @@ export PATH=/Users/bishal/.opencode/bin:$PATH
 
 # Added by Antigravity
 export PATH="/Users/bishal/.antigravity/antigravity/bin:$PATH"
+export PATH=$PATH:/usr/local/go/bin
