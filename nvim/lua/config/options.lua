@@ -30,5 +30,7 @@ vim.opt.expandtab = true
 vim.opt.splitright = true 
 vim.opt.splitbelow = true
 
+vim.opt.cmdheight = 2 -- +1 row above tmux vs default
+
 -- 📝 File Formatting
 vim.opt.fixendofline = true -- Ensure files end with newline (POSIX standard) 

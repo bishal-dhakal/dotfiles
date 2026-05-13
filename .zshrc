@@ -12,8 +12,8 @@ ZSH_THEME_RANDOM_CANDIDATES=(
   bira            # Clean with git info
   af-magic        # Fast, colorful, git-aware
   amuse           # Modern, clean, git status
-  arrow           # Simple, arrow-based
-  bureau          # Clean, informative
+  # arrow           # Simple, arrow-based
+  #`bureau          # Clean, informative
   cloud           # Minimal cloud theme
   crunch          # Compact, informative
   # fino            # Modern, git-aware

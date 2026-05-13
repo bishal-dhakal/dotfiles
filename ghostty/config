@@ -1,0 +1,43 @@
+# Font
+font-family = JetBrainsMono Nerd Font
+font-size = 11.5
+font-thicken = false
+
+cursor-style = bar
+cursor-style-blink = true
+
+# Transparency & Appearance
+background-opacity = 0.5
+background-blur-radius = 20
+window-decoration = true
+gtk-titlebar = true
+
+# Theme
+theme = TokyoNight Night
+
+# Cursor
+cursor-style = bar
+cursor-style-blink = true
+
+# Window
+window-padding-x = 10
+window-padding-y = 1
+resize-overlay = never
+
+# Scrollback
+scrollback-limit = 10000
+
+# Shell integration
+shell-integration = zsh
+shell-integration-features = cursor,sudo,title
+
+
+# Keybinds
+keybind = ctrl+shift+t=new_tab
+keybind = ctrl+shift+w=close_surface
+keybind = ctrl+shift+l=next_tab
+keybind = ctrl+shift+h=previous_tab
+keybind = ctrl+shift+n=new_window
+keybind = ctrl+equal=increase_font_size:1
+keybind = ctrl+minus=decrease_font_size:1
+keybind = ctrl+zero=reset_font_size
