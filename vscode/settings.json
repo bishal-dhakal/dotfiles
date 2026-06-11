@@ -357,5 +357,6 @@
   "editor.inlineSuggest.edits.showLongDistanceHint": false,
   "chat.disableAIFeatures": true,
   "workbench.sideBar.location": "right",
-  "liveServer.settings.donotShowInfoMsg": true
+  "liveServer.settings.donotShowInfoMsg": true,
+  "python.languageServer": "Default"
 }

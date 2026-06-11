@@ -228,3 +228,7 @@ export PATH=/Users/bishal/.opencode/bin:$PATH
 # Added by Antigravity
 export PATH="/Users/bishal/.antigravity/antigravity/bin:$PATH"
 export PATH=$PATH:/usr/local/go/bin
+
+# Added by Antigravity IDE
+export PATH="/Users/bishal/.antigravity-ide/antigravity-ide/bin:$PATH"
+alias switchbranch='~/dotfiles/script/switchbranch.sh'
