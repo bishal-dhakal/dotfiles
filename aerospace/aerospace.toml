@@ -16,7 +16,7 @@ after-startup-command = [
   'exec-and-forget sketchybar >> $HOME/.sketchybar/service.log 2>&1',
   # JankyBorders has a built-in detection of already running process,
   # so it won't be run twice on AeroSpace restart
-  'exec-and-forget borders style=square order=above width=1.5 active_color=0xffe1e3e4 inactive_color=0xff494d64',
+  'exec-and-forget borders style=round order=above width=6.0 active_color=0xff656a75 inactive_color=0xff3b3f49',
   # Re-tile after gaps load so windows clear SketchyBar on external displays
   'exec-and-forget aerospace balance-sizes',
 ]
