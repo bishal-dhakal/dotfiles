@@ -2,23 +2,25 @@ local icons = require("icons")
 local colors = require("colors")
 local settings = require("settings")
 
+local widget_font = {
+    family = settings.font.numbers,
+    style = settings.font.style_map[settings.menu_bar.style],
+    size = settings.widgets.size
+}
+
 local battery = sbar.add("item", "widgets.battery", {
     position = "right",
     icon = {
-        font = {
-            family = settings.font.text,
-            style = settings.font.style_map[settings.menu_bar.style],
-            size = 20.0
-        }
+        font = widget_font,
+        padding_right = 3
     },
     label = {
-        font = {
-            family = settings.font.numbers,
-            style = settings.font.style_map[settings.menu_bar.style],
-            size = settings.menu_bar.size
-        },
-        color = colors.white
+        font = widget_font,
+        color = colors.white,
+        padding_left = 0
     },
+    padding_right = 0,
+    padding_left = 0,
     update_freq = 180,
     popup = {
         align = "center"
@@ -41,31 +43,12 @@ local remaining_time = sbar.add("item", {
 
 battery:subscribe({"routine", "power_source_change", "system_woke"}, function()
     sbar.exec("pmset -g batt", function(batt_info)
-        local icon = "!"
         local label = "?"
 
         local found, _, charge = batt_info:find("(%d+)%%")
         if found then
             charge = tonumber(charge)
             label = charge .. "%"
-        end
-
-        local charging, _, _ = batt_info:find("AC Power")
-
-        if charging then
-            icon = icons.battery.charging
-        else
-            if found and charge > 80 then
-                icon = icons.battery._100
-            elseif found and charge > 60 then
-                icon = icons.battery._75
-            elseif found and charge > 40 then
-                icon = icons.battery._50
-            elseif found and charge > 20 then
-                icon = icons.battery._25
-            else
-                icon = icons.battery._0
-            end
         end
 
         local lead = ""
@@ -75,7 +58,7 @@ battery:subscribe({"routine", "power_source_change", "system_woke"}, function()
 
         battery:set({
             icon = {
-                string = icon,
+                string = icons.battery.thunder,
                 color = colors.white
             },
             label = {
@@ -107,5 +90,5 @@ end)
 
 sbar.add("item", "widgets.battery.padding", {
     position = "right",
-    width = settings.group_paddings + 4
+    width = settings.widgets.spacing
 })

@@ -13,7 +13,8 @@ local volume_percent = sbar.add("item", "widgets.volume1", {
         string = "??%",
         padding_left = -1,
         font = {
-            family = settings.font.numbers
+            family = settings.font.numbers,
+            size = settings.widgets.label_size
         }
     }
 })
@@ -29,7 +30,7 @@ local volume_icon = sbar.add("item", "widgets.volume2", {
         font = {
             family = "SF Pro",
             style = "Regular",
-            size = 14.0
+            size = settings.widgets.icon_size
         }
     },
     label = {
@@ -37,7 +38,7 @@ local volume_icon = sbar.add("item", "widgets.volume2", {
         align = "left",
         font = {
             style = settings.font.style_map["Regular"],
-            size = 14.0
+            size = settings.widgets.label_size
         }
     }
 })
@@ -55,7 +56,7 @@ local volume_bracket = sbar.add("bracket", "widgets.volume.bracket", {volume_ico
 
 sbar.add("item", "widgets.volume.padding", {
     position = "right",
-    width = settings.group_paddings
+    width = settings.widgets.spacing
 })
 
 local volume_slider = sbar.add("slider", popup_width, {

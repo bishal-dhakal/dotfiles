@@ -5,7 +5,8 @@ return {
     rebel = "",
     empire = "",
     gear = "􀍟",
-    cpu = "",
+    cpu = "󰻠",
+    memory = "󰍛",
     nuke = "",
     clipboard = "􀉄",
     calendar = "󰃭",
@@ -23,6 +24,7 @@ return {
         _0 = ""
     },
     battery = {
+        thunder = "",
         _100 = "󰁹",
         _75 = "󰂀",
         _50 = "󰁾",

@@ -48,6 +48,11 @@ return {
         style = "Regular",
     },
 
+    widgets = {
+        size = 14.0,
+        spacing = 6,
+    },
+
     icons = "JetBrainsMono Nerd Font Mono:Regular:13.0",
     app_icons = "sketchybar-app-font:Regular:13.0",
 

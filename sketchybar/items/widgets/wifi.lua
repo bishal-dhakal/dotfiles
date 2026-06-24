@@ -18,7 +18,7 @@ local wifi_up = sbar.add("item", "widgets.wifi1", {
         font = {
             family = "SF Pro",
             style = "Bold",
-            size = 9.0
+            size = settings.widgets.label_size
         },
         string = icons.wifi.upload
     },
@@ -26,7 +26,7 @@ local wifi_up = sbar.add("item", "widgets.wifi1", {
         font = {
             family = settings.font.numbers,
             style = settings.font.style_map["Bold"],
-            size = 9.0
+            size = settings.widgets.label_size
         },
         color = colors.red,
         string = "??? Bps"
@@ -42,7 +42,7 @@ local wifi_down = sbar.add("item", "widgets.wifi2", {
         font = {
             family = "SF Pro",
             style = "Bold",
-            size = 9.0
+            size = settings.widgets.label_size
         },
         string = icons.wifi.download
     },
@@ -50,7 +50,7 @@ local wifi_down = sbar.add("item", "widgets.wifi2", {
         font = {
             family = settings.font.numbers,
             style = settings.font.style_map["Bold"],
-            size = 9.0
+            size = settings.widgets.label_size
         },
         color = colors.blue,
         string = "??? Bps"
@@ -162,7 +162,7 @@ local router = sbar.add("item", {
 
 sbar.add("item", {
     position = "right",
-    width = settings.group_paddings
+    width = settings.widgets.spacing
 })
 
 wifi_up:subscribe("network_update", function(env)
