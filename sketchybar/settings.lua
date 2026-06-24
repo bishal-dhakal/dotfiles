@@ -3,7 +3,7 @@ local icons = require("icons")
 
 return {
     paddings = 3,
-    group_paddings = 5,
+    group_paddings = 8,
     modes = {
         main = {
             icon = icons.rebel,
@@ -23,31 +23,37 @@ return {
         background = colors.bar.bg
     },
     items = {
-        height = 26,
-        gap = 0,
+        height = 24,
+        gap = 4,
         padding = {
-            right = 16,
-            left = 12,
+            right = 8,
+            left = 8,
             top = 0,
             bottom = 0
         },
-        default_color = function(workspace)
-            return colors.rainbow[workspace + 1]
+        default_color = function(_)
+            return colors.grey
         end,
-        highlight_color = function(workspace)
-            return colors.yellow
+        highlight_color = function(_)
+            return colors.white
         end,
         colors = {
-            background = colors.bg1
+            background = colors.transparent
         },
-        corner_radius = 6
+        corner_radius = 4
     },
 
-    icons = "sketchybar-app-font:Regular:16.0", -- alternatively available: NerdFont
+    menu_bar = {
+        size = 15.0,
+        style = "Regular",
+    },
+
+    icons = "JetBrainsMono Nerd Font Mono:Regular:13.0",
+    app_icons = "sketchybar-app-font:Regular:13.0",
 
     font = {
-        text = "JetBrainsMono Nerd Font Mono", -- Used for text
-        numbers = "JetBrainsMono Nerd Font Mono", -- Used for numbers
+        text = "JetBrainsMono Nerd Font Mono",
+        numbers = "JetBrainsMono Nerd Font Mono",
         style_map = {
             ["Regular"] = "Regular",
             ["Semibold"] = "Medium",
