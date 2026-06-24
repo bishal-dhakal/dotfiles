@@ -79,6 +79,7 @@ outer.left = 0
 outer.bottom = 0
 outer.top = [
   { monitor."Built-in Retina Display" = 0 },
+  { monitor."BenQ EX2710Q" = 38 },
   { monitor."DELL S2721HN" = 38 },
   1,
 ]

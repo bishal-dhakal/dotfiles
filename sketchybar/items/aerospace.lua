@@ -36,6 +36,47 @@ function parse_string_to_table(s)
     return result
 end
 
+local monitors_config = require("monitors")
+
+function get_monitor_display_map()
+    local map = {}
+    local file = io.popen("aerospace list-monitors --format '%{monitor-id}|%{monitor-appkit-nsscreen-screens-id}'")
+    if not file then
+        return map
+    end
+    local result = file:read("*a")
+    file:close()
+
+    for line in result:gmatch("[^\n]+") do
+        local aero_id, display_id = line:match("^([^|]+)|(.+)$")
+        if aero_id and display_id then
+            map[aero_id] = display_id
+        end
+    end
+
+    return map
+end
+
+function get_aerospace_monitor_for_workspace(workspace)
+    local ws = tonumber(workspace) or workspace
+    for monitor_id, workspaces in pairs(monitors_config.workspaces_by_monitor) do
+        for _, assigned in ipairs(workspaces) do
+            if assigned == ws then
+                return monitor_id
+            end
+        end
+    end
+    return nil
+end
+
+function get_sketchybar_display_for_workspace(workspace)
+    local aero_monitor = get_aerospace_monitor_for_workspace(workspace)
+    if not aero_monitor then
+        return nil
+    end
+    return get_monitor_display_map()[aero_monitor]
+end
+
 function get_workspaces()
     local file = io.popen("aerospace list-workspaces --all")
     local result = file:read("*a")

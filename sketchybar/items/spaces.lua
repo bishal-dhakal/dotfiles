@@ -18,7 +18,9 @@ end
 
 for i, workspace in ipairs(workspaces) do
     local selected = workspace == current_workspace
+    local display = get_sketchybar_display_for_workspace(workspace)
     local space = sbar.add("item", "item." .. i, {
+        display = display,
         icon = {
             font = {
                 family = settings.font.numbers
@@ -81,6 +83,7 @@ for i, workspace in ipairs(workspaces) do
 
     -- Padding space between each item
     sbar.add("item", "item." .. i .. "padding", {
+        display = display,
         script = "",
         width = settings.items.gap
     })
@@ -102,6 +105,7 @@ for i, workspace in ipairs(workspaces) do
     space:subscribe("aerospace_workspace_change", function(env)
         local selected = env.FOCUSED_WORKSPACE == workspace
         space:set({
+            display = get_sketchybar_display_for_workspace(workspace),
             icon = {
                 highlight = selected
             },
@@ -170,7 +174,19 @@ local spaces_indicator = sbar.add("item", {
     }
 })
 
+local function refresh_workspace_displays()
+    for i, workspace in ipairs(workspaces) do
+        local display = get_sketchybar_display_for_workspace(workspace)
+        spaces[i]:set({ display = display })
+        sbar.set("item." .. i .. "padding", { display = display })
+    end
+end
+
 -- Event handles
+space_window_observer:subscribe("display_change", function(_)
+    refresh_workspace_displays()
+end)
+
 space_window_observer:subscribe("space_windows_change", function(env)
     for i, workspace in ipairs(workspaces) do
         sbar.exec("aerospace list-windows --workspace " .. i .. " --format '%{app-name}' --json ", function(apps)
