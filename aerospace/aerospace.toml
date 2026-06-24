@@ -16,7 +16,9 @@ after-startup-command = [
   'exec-and-forget sketchybar >> $HOME/.sketchybar/service.log 2>&1',
   # JankyBorders has a built-in detection of already running process,
   # so it won't be run twice on AeroSpace restart
-  'exec-and-forget borders active_color=0xffe1e3e4 inactive_color=0xff494d64 width=5.0',
+  'exec-and-forget borders style=square order=above width=1.5 active_color=0xff000000 inactive_color=0xff494d64',
+  # Re-tile after gaps load so windows clear SketchyBar on external displays
+  'exec-and-forget aerospace balance-sizes',
 ]
 
 # Notify Sketchybar about workspace change and update icons
@@ -75,15 +77,16 @@ preset = 'qwerty'
 [gaps]
 inner.horizontal = 0
 inner.vertical = 0
-outer.left = 0
+outer.left = 3
 outer.bottom = 0
 outer.top = [
-  { monitor."Built-in Retina Display" = 0 },
-  { monitor."BenQ EX2710Q" = 38 },
-  { monitor."DELL S2721HN" = 38 },
-  1,
+  { monitor."built-in" = 0 },
+  { monitor."dell" = 38 },
+  { monitor."benq" = 42 },
+  { monitor.main = 42 },
+  42,
 ]
-outer.right = 0
+outer.right = 3
 
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes

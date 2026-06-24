@@ -1,6 +1,7 @@
 -- Mirrors aerospace.toml workspace + gap layout. Add new external monitors here and in aerospace.toml.
 return {
-  sketchybar_top_gap = 38,
+  benq_top_gap = 42,
+  dell_top_gap = 38,
   external_monitors = {
     "BenQ EX2710Q",
     "DELL S2721HN",
