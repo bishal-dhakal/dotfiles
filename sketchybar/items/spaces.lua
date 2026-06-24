@@ -1,5 +1,4 @@
 local colors = require("colors")
-local icons = require("icons")
 local settings = require("settings")
 local app_icons = require("helpers.app_icons")
 
@@ -40,8 +39,8 @@ for i, workspace in ipairs(workspaces) do
             y_offset = -1,
             highlight = selected
         },
-        padding_right = 1,
-        padding_left = 1,
+        padding_right = 0,
+        padding_left = 0,
         background = {
             color = settings.items.colors.background,
             border_width = 1,
@@ -80,13 +79,6 @@ for i, workspace in ipairs(workspaces) do
             })
         end)
     end)
-
-    -- Padding space between each item
-    sbar.add("item", "item." .. i .. "padding", {
-        display = display,
-        script = "",
-        width = settings.items.gap
-    })
 
     -- Item popup
     local space_popup = sbar.add("item", {
@@ -151,34 +143,10 @@ local space_window_observer = sbar.add("item", {
     updates = true
 })
 
--- Handles the small icon indicator for spaces / menus changes
-local spaces_indicator = sbar.add("item", {
-    padding_left = -3,
-    padding_right = 0,
-    icon = {
-        padding_left = 8,
-        padding_right = 9,
-        color = colors.grey,
-        string = icons.switch.on
-    },
-    label = {
-        width = 0,
-        padding_left = 0,
-        padding_right = 8,
-        string = "Spaces",
-        color = colors.bg1
-    },
-    background = {
-        color = colors.with_alpha(colors.grey, 0.0),
-        border_color = colors.with_alpha(colors.bg1, 0.0)
-    }
-})
-
 local function refresh_workspace_displays()
     for i, workspace in ipairs(workspaces) do
         local display = get_sketchybar_display_for_workspace(workspace)
         spaces[i]:set({ display = display })
-        sbar.set("item." .. i .. "padding", { display = display })
     end
 end
 
@@ -237,57 +205,4 @@ space_window_observer:subscribe("aerospace_focus_change", function(env)
             end)
         end)
     end
-end)
-
-spaces_indicator:subscribe("swap_menus_and_spaces", function(env)
-    local currently_on = spaces_indicator:query().icon.value == icons.switch.on
-    spaces_indicator:set({
-        icon = currently_on and icons.switch.off or icons.switch.on
-    })
-end)
-
-spaces_indicator:subscribe("mouse.entered", function(env)
-    sbar.animate("tanh", 30, function()
-        spaces_indicator:set({
-            background = {
-                color = {
-                    alpha = 1.0
-                },
-                border_color = {
-                    alpha = 1.0
-                }
-            },
-            icon = {
-                color = colors.bg1
-            },
-            label = {
-                width = "dynamic"
-            }
-        })
-    end)
-end)
-
-spaces_indicator:subscribe("mouse.exited", function(env)
-    sbar.animate("tanh", 30, function()
-        spaces_indicator:set({
-            background = {
-                color = {
-                    alpha = 0.0
-                },
-                border_color = {
-                    alpha = 0.0
-                }
-            },
-            icon = {
-                color = colors.grey
-            },
-            label = {
-                width = 0
-            }
-        })
-    end)
-end)
-
-spaces_indicator:subscribe("mouse.clicked", function(env)
-    sbar.trigger("swap_menus_and_spaces")
 end)

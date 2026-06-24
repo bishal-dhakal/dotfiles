@@ -24,7 +24,7 @@ return {
     },
     items = {
         height = 26,
-        gap = 5,
+        gap = 0,
         padding = {
             right = 16,
             left = 12,
